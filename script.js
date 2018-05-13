@@ -23,14 +23,12 @@ class Stopwatch extends React.Component {
         return `${pad0(this.state.times.minutes)}:${pad0(this.state.times.seconds)}:${pad0(Math.floor(this.state.times.milisconds))}`;
     }
 
-    //zmieniam stan po otrzymaniu danych z buttona start i stop
     changeRanStat(state) {
         this.setState({
             running: state
         });
     }
 
-    //metoda ktora ma ustawic state na zera i bedzie wyslana poprzez propsy do dziecka
     reset() {
         this.setState({
             times: {
@@ -83,8 +81,6 @@ class Stopwatch extends React.Component {
             ul.removeChild(ul.firstChild);
     }
 
-
-
     render() {
         return (
             <div className="container">
@@ -96,14 +92,11 @@ class Stopwatch extends React.Component {
                     <nav className="main">
                         <div className="stopwatch">{this.format(this.state.times)}</div>
                         <div className="buttons-main">
-                            {/*renderuje buttony do isRunning przekazywane jest true lub false w zaleznosci od kliknetego butona*/}
                             <StartButton isRunning={this.changeRanStat} />
                             <StopButton isRunning={this.changeRanStat} />
                         </div>
                     </nav>
                     <nav className="buttons-list">
-                        {/*renderuje button do resetu a do wlasciwiosci action podpinam funkcje do resetowania stanu.
-                        do akction odwoluje sie potem w komponencie ResetButton. pozostale dzialaja tak samo*/}
                         <ResetButton action={this.reset} />
                         <AddToListButton action={this.add} />
                         <ClearListButton action={this.clear} />
@@ -120,17 +113,13 @@ class StartButton extends React.Component {
         this.state = {
             running: false
         };
-
         this.start = this.start.bind(this);
-
     }
 
-    //zmienia w propsach wlasciwosc running na true
     clickStart() {
         this.props.isRunning(true);
     }
 
-    //startuje zegar przez wykonie metody clickStart
     start() {
         if (! this.state.running) {
             this.clickStart();
@@ -156,12 +145,10 @@ class StopButton extends React.Component {
         this.stop = this.stop.bind(this);
     }
 
-    //zmienia wlasciwosc running na false
     clickStop() {
         this.props.isRunning(false);
     }
 
-    //stopuje zegar przez wykonanie metody clickStop
     stop() {
         this.clickStop();
         clearInterval(this.watch);
@@ -179,7 +166,6 @@ class StopButton extends React.Component {
 
 class ResetButton extends React.Component {
 
-    //tylko sobie renderuje button a do onClick przekazuje jako propsy akcje. dzieki temu po kliknieciu wykona sie metoda reset i wyzeruje sie zegar
     render() {
         return (
             <a href='#'
@@ -198,7 +184,6 @@ class AddToListButton extends React.Component {
                onClick={this.props.action}
             >Add To List</a>
         )
-
     }
 }
 

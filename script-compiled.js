@@ -40,9 +40,6 @@ var Stopwatch = function (_React$Component) {
         value: function format(times) {
             return pad0(this.state.times.minutes) + ':' + pad0(this.state.times.seconds) + ':' + pad0(Math.floor(this.state.times.milisconds));
         }
-
-        //zmieniam stan po otrzymaniu danych z buttona start i stop
-
     }, {
         key: 'changeRanStat',
         value: function changeRanStat(state) {
@@ -50,9 +47,6 @@ var Stopwatch = function (_React$Component) {
                 running: state
             });
         }
-
-        //metoda ktora ma ustawic state na zera i bedzie wyslana poprzez propsy do dziecka
-
     }, {
         key: 'reset',
         value: function reset() {
@@ -176,23 +170,15 @@ var StartButton = function (_React$Component2) {
         _this3.state = {
             running: false
         };
-
         _this3.start = _this3.start.bind(_this3);
-
         return _this3;
     }
-
-    //zmienia w propsach wlasciwosc running na true
-
 
     _createClass(StartButton, [{
         key: 'clickStart',
         value: function clickStart() {
             this.props.isRunning(true);
         }
-
-        //startuje zegar przez wykonie metody clickStart
-
     }, {
         key: 'start',
         value: function start() {
@@ -232,17 +218,11 @@ var StopButton = function (_React$Component3) {
         return _this4;
     }
 
-    //zmienia wlasciwosc running na false
-
-
     _createClass(StopButton, [{
         key: 'clickStop',
         value: function clickStop() {
             this.props.isRunning(false);
         }
-
-        //stopuje zegar przez wykonanie metody clickStop
-
     }, {
         key: 'stop',
         value: function stop() {
@@ -277,9 +257,6 @@ var ResetButton = function (_React$Component4) {
 
     _createClass(ResetButton, [{
         key: 'render',
-
-
-        //tylko sobie renderuje button a do onClick przekazuje jako propsy akcje. dzieki temu po kliknieciu wykona sie metoda reset i wyzeruje sie zegar
         value: function render() {
             return React.createElement(
                 'a',
